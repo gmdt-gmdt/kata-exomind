@@ -3,14 +3,14 @@ import { Pokemon } from "./pokemon";
 import { POKEMONS } from "./mock-pokemon-list";
 import { HttpClient } from "@angular/common/http";
 import { catchError, Observable, of, tap } from "rxjs";
-const API_URL: string = "http://localhost:3000";
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class PokemonService {
   constructor(private http: HttpClient) {}
 
   getPokemonList(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(`${API_URL}/pokemons`).pipe(
+    return this.http.get<Pokemon[]>(`${environment.apiUrl}/pokemons`).pipe(
       tap((pokemonList) => this.log(pokemonList)),
       catchError((error) => this.handleError(error, []))
     );
