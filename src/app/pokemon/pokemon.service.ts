@@ -19,7 +19,9 @@ export class PokemonService {
   searchPokemonList(criteria: string): Observable<Pokemon[]> {
     return criteria && criteria.length > 1
       ? this.http
-          .get<Pokemon[]>(`${API_URL}/pokemons/search?name=${criteria}`)
+          .get<Pokemon[]>(
+            `${environment.apiUrl}/pokemons/search?name=${criteria}`
+          )
           .pipe(
             tap((pokemonList) => this.log(pokemonList)),
             catchError((error) => this.handleError(error, []))
@@ -28,7 +30,7 @@ export class PokemonService {
   }
 
   getPokemonById(id: number): Observable<Pokemon | undefined> {
-    return this.http.get<Pokemon>(`${API_URL}/pokemons/${id}`).pipe(
+    return this.http.get<Pokemon>(`${environment.apiUrl}/pokemons/${id}`).pipe(
       tap((pokemon) => this.log(pokemon)),
       catchError((error) => this.handleError(error, undefined))
     );
@@ -36,7 +38,7 @@ export class PokemonService {
 
   updatePokemon(pokemon: Pokemon): Observable<Pokemon> {
     return this.http
-      .put<Pokemon>(`${API_URL}/pokemons/${pokemon.id}`, pokemon)
+      .put<Pokemon>(`${environment.apiUrl}/pokemons/${pokemon.id}`, pokemon)
       .pipe(
         tap((pokemon) => this.log(pokemon)),
         catchError((error) => this.handleError(error, undefined))
@@ -45,17 +47,21 @@ export class PokemonService {
 
   addPokemon(pokemon: Pokemon): Observable<Pokemon> {
     console.log(pokemon);
-    return this.http.post<Pokemon>(`${API_URL}/pokemons`, pokemon).pipe(
-      tap((pokemon) => this.log(pokemon)),
-      catchError((error) => this.handleError(error, undefined))
-    );
+    return this.http
+      .post<Pokemon>(`${environment.apiUrl}/pokemons`, pokemon)
+      .pipe(
+        tap((pokemon) => this.log(pokemon)),
+        catchError((error) => this.handleError(error, undefined))
+      );
   }
 
   delePokemon(pokemonId: number): Observable<Pokemon> {
-    return this.http.delete<Pokemon>(`${API_URL}/pokemons/${pokemonId}`).pipe(
-      tap((pokemon) => this.log(pokemon)),
-      catchError((error) => this.handleError(error, undefined))
-    );
+    return this.http
+      .delete<Pokemon>(`${environment.apiUrl}/pokemons/${pokemonId}`)
+      .pipe(
+        tap((pokemon) => this.log(pokemon)),
+        catchError((error) => this.handleError(error, undefined))
+      );
   }
 
   private log(response: Pokemon[] | Pokemon | undefined) {
