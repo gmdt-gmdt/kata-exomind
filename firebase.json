@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": "dist/ng-pokemon-app",
     "ignore": [
       "firebase.json",
       "**/.*",
