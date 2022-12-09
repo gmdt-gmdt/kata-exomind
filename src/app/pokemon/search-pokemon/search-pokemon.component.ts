@@ -8,8 +8,8 @@ import {
   Subject,
   switchMap,
 } from "rxjs";
-import { Pokemon } from "../pokemon";
-import { PokemonService } from "../pokemon.service";
+import { Pokemon } from "../common/models/pokemon";
+import { PokemonService } from "../common/services/pokemon.service";
 
 @Component({
   selector: "app-search-pokemon",

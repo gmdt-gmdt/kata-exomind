@@ -3,3 +3,7 @@ a,
 #pkmItem {
   cursor: pointer;
 }
+
+button {
+  margin-right: 10px;
+}

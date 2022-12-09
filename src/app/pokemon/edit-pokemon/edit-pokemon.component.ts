@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Pokemon } from "../pokemon";
+import { Pokemon } from "../common/models/pokemon";
 import { ActivatedRoute } from "@angular/router";
-import { PokemonService } from "../pokemon.service";
+import { PokemonService } from "../common/services/pokemon.service";
 
 @Component({
   selector: "app-edit-pokemon",

@@ -8,10 +8,15 @@ import { PageNotFoundComponent } from "./share/page-not-found/page-not-found.com
 import { PokemonModule } from "./pokemon/pokemon.module";
 import { HeaderComponent } from "./share/header/header.component";
 import { FormsModule } from "@angular/forms";
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from "./user/login.component";
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, PageNotFoundComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    PageNotFoundComponent,
+    LoginComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,

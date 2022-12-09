@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "../auth.service";
+import { AuthService } from "../share/services/auth.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -24,11 +24,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.message = "Tentative de connexion...";
-    this.authService.login(this.name, this.password).subscribe((isLoggedIn) => {
-      this.isLoggedIn = isLoggedIn;
-      this.setMessage();
-      if (this.authService.isLoggedIn) this.router.navigate(["/pokemons"]);
-    });
+    this.authService
+      .login({ name: this.name, password: this.password })
+      .subscribe((isLoggedIn) => {
+        this.isLoggedIn = isLoggedIn;
+        this.setMessage();
+        if (this.authService.isLoggedIn) this.router.navigate(["/pokemons"]);
+      });
   }
   logout() {
     this.isLoggedIn = false;

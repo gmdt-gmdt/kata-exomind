@@ -40,16 +40,30 @@
               <tr>
                 <td>Date de création</td>
                 <td>
-                  <em>{{ pokemon.created | date: "dd/MM/yyyy" }}</em>
+                  <em>{{ pokemon.created | date : "dd/MM/yyyy" }}</em>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="card-action">
-          <a (click)="goBack()">Back</a>
-          <a (click)="goToEditPokemon(pokemon.id)">Edit</a>
-          <a (click)="deletePokemon(pokemon.id)">Delete</a>
+          <button class="waves-effect waves-purple btn" (click)="goBack()">
+            Back
+          </button>
+          <button
+            class="waves-effect waves-purple btn"
+            [disabled]="!isAdmin"
+            (click)="goToEditPokemon(pokemon.id)"
+          >
+            Edit
+          </button>
+          <button
+            class="waves-effect waves-purple btn"
+            [disabled]="!isAdmin"
+            (click)="deletePokemon(pokemon.id)"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

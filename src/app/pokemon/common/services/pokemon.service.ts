@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Pokemon } from "./pokemon";
-import { POKEMONS } from "./mock-pokemon-list";
+import { Pokemon } from "../models/pokemon";
+import { POKEMONS } from "../mocks/mock-pokemon-list";
 import { HttpClient } from "@angular/common/http";
 import { catchError, Observable, of, tap } from "rxjs";
-import { environment } from "../../environments/environment";
+import { environment } from "../../../../environments/environment";
 
 @Injectable()
 export class PokemonService {
@@ -19,9 +19,7 @@ export class PokemonService {
   searchPokemonList(criteria: string): Observable<Pokemon[]> {
     return criteria && criteria.length > 1
       ? this.http
-          .get<Pokemon[]>(
-            `${environment.apiUrl}/pokemons/search?name=${criteria}`
-          )
+          .get<Pokemon[]>(`${environment.apiUrl}/pokemons/?q=${criteria}`)
           .pipe(
             tap((pokemonList) => this.log(pokemonList)),
             catchError((error) => this.handleError(error, []))

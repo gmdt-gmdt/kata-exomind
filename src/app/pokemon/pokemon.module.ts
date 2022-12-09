@@ -1,18 +1,19 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BorderCardDirective } from "./border-card.directive";
 import { DetailPokemonComponent } from "./detail-pokemon/detail-pokemon.component";
 import { ListPokemonComponent } from "./list-pokemon/list-pokemon.component";
-import { PokemonTypeColorPipe } from "./pokemon-type-color.pipe";
 import { RouterModule, Routes } from "@angular/router";
-import { PokemonService } from "./pokemon.service";
+import { PokemonService } from "./common/services/pokemon.service";
 import { FormsModule } from "@angular/forms";
 import { PokemonFormComponent } from "./pokemon-form/pokemon-form.component";
 import { EditPokemonComponent } from "./edit-pokemon/edit-pokemon.component";
 import { AddPokemonComponent } from "./add-pokemon/add-pokemon.component";
 import { SearchPokemonComponent } from "./search-pokemon/search-pokemon.component";
 import { LoaderComponent } from "./loader/loader.component";
-import { AuthGuard } from "../auth.guard";
+import { AuthGuard } from "../share/guards/auth.guard";
+import { BorderCardDirective } from "./common/directives/border-card.directive";
+import { PokemonTypeColorPipe } from "./common/pipes/pokemon-type-color.pipe";
+import { AdminGuard } from "../share/guards/admin.guard";
 
 const pokemonRoutes: Routes = [
   {
@@ -28,12 +29,12 @@ const pokemonRoutes: Routes = [
   {
     path: "edit/pokemon/:id",
     component: EditPokemonComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: "pokemon/add",
     component: AddPokemonComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: "",
